@@ -9,6 +9,7 @@
 
 /*Imports*/
 const { app, BrowserWindow, ipcMain } = require('electron');
+const { create } = require('node:domain');
 const path = require('node:path');
 
 
@@ -43,10 +44,9 @@ const createWindow = () => {
 /** SECOND WINDOW
  * @function createGameWindow creates the game window to display game outputs during gameplay
  * */
-let secondWindow;
 
-const createGameWindow = (mainWindow) => {
-    const secondWindow = new BrowserWindow({
+const createGameWindow = () => {
+    const gameWindow = new BrowserWindow({
         width: 800,
         height: 600,
         webPreferences: {
@@ -56,11 +56,7 @@ const createGameWindow = (mainWindow) => {
         },
     });
 
-    secondWindow.loadURL(`${MAIN_WINDOW_WEBPACK_ENTRY}/#/second-screen`);
-
-    mainWindow.secondWindow = secondWindow;
-
-    return mainWindow;
+    gameWindow.loadURL(`${MAIN_WINDOW_WEBPACK_ENTRY}/#/second-screen`);
 }
 
 /** INITIALISE APP
@@ -68,14 +64,12 @@ const createGameWindow = (mainWindow) => {
  * -Some APIs can only be used after this event occurs.
  * */
 app.whenReady().then(() => {
-    let mainWindow = createWindow();
-    mainWindow = createGameWindow(mainWindow);
+    createWindow();
 
     // On OS X it's common to re-create a window in the app when the dock icon is clicked and there are no other windows open.
     app.on('activate', () => {
         if (BrowserWindow.getAllWindows().length === 0) {
             createWindow();
-            createGameWindow();
         }
     });
 });
@@ -86,4 +80,9 @@ app.on('window-all-closed', () => {
     if (process.platform !== 'darwin') { // On macOS it is common for applications to stay open until the user explicitly quits
         app.quit();
     }
+});
+
+
+ipcMain.on('open-game-screen', (event, arg) => {
+    createGameWindow();
 });
