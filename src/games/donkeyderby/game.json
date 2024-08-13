@@ -1,0 +1,12 @@
+{
+    "_comment": "GAME.JSON FOR DONKEY DERBY",
+
+    
+    "name": "Donkey Derby",
+    "description": "Get to the finish line first by hitting your number. Hit other people's numbers to make them go back.",
+
+    "gradient": {
+        "start": "#0b3728",
+        "end": "#0b7c5c"
+    }
+}

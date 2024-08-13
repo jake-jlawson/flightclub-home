@@ -1,0 +1,27 @@
+.action-buttons {
+    /*Styles*/
+    background-color: white;
+    border: 0px;
+    border-radius: 20px;
+
+    /*Text*/
+    text-transform: uppercase;
+    font-weight: regular;
+    font-size: 20px;
+
+    /*Layout*/
+    margin: 0px 10px;
+    padding: 5px 20px 5px 12px;
+
+    /*Display*/
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    cursor: pointer;
+    transition: color 0.5s ease;
+}
+
+.action-buttons:hover {
+    color: grey;
+}

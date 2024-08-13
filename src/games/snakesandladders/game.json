@@ -1,0 +1,11 @@
+{
+    "_comment": "GAME.JSON FOR DEMOLITION GAME",
+
+    "name": "Snakes and Ladders",
+    "description": "It's the classic board game. Use your dart throw as the dice, aim for ladders, and avoid the snakes.",
+
+    "gradient": {
+        "start": "#260c19",
+        "end": "#7a1843"
+    }
+}

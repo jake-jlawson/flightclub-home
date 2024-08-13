@@ -1,0 +1,11 @@
+{
+    "_comment": "GAME.JSON FOR DEMOLITION GAME",
+
+    "name": "Quackshot",
+    "description": "Score as many bullseyes as possible, but the further out, the worse the points.",
+
+    "gradient": {
+        "start": "#1c3b3e",
+        "end": "#3f868c"
+    }
+}

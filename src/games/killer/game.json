@@ -1,0 +1,11 @@
+{
+    "_comment": "GAME.JSON FOR KILLER GAME",
+
+    "name": "Killer",
+    "description": "Hit your number to become the killer. Then target other players. Last person standing wins.",
+
+    "gradient": {
+        "start": "#3b1218",
+        "end": "#7d1621"
+    }
+}

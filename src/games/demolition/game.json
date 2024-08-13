@@ -1,0 +1,11 @@
+{
+    "_comment": "GAME.JSON FOR DEMOLITION GAME",
+
+    "name": "Demolition",
+    "description": "Based on the classic game of 301, simply demolish your tower before anyone else.",
+
+    "gradient": {
+        "start": "#2e182f",
+        "end": "#5d2f5e"
+    }
+}

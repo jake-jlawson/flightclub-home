@@ -1,0 +1,11 @@
+{
+    "_comment": "GAME.JSON FOR DEMOLITION GAME",
+
+    "name": "Shanghai",
+    "description": "Aim for the number that corresponds to the current round. Highest scorer wins.",
+
+    "gradient": {
+        "start": "#4f2414",
+        "end": "#9e451f"
+    }
+}
