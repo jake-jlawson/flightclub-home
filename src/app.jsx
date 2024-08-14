@@ -17,6 +17,7 @@ import { GameWindowProvider } from './contexts/GameDisplay';
 import GameSelect from './screens/GameSelect/GameSelect';
 import Start from './screens/Start/Start';
 import GameWindow from './screens/GameWindow/GameWindow';
+import PlayerInput from './screens/PlayerInput/PlayerInput';
 
 
 const container = document.getElementById('root');
@@ -27,10 +28,14 @@ const root = createRoot(container);
  * @component provides the primary component for rendering the app entry point*/
 root.render(
     <GameWindowProvider>
-        <HashRouter> {/*app routes*/}
+        <HashRouter>
             <Routes>
-                <Route path="/" element={<Start/>} />
-                <Route path="/game-window" element={<GameWindow/>} />
+                {/*Main window routes*/}
+                <Route path="/" element={<PlayerInput/>} />
+                <Route path="/player-input" element={<></>} />
+
+                {/*Game window rendering route*/}
+                <Route path="/game-window" element={<GameWindow/>} /> 
             </Routes>
         </HashRouter>
     </GameWindowProvider>

@@ -1,0 +1,74 @@
+:root {
+    --keyboard-row-size: 70px;
+}
+
+.keyboard-row {
+    list-style-type: none;
+    height: var(--keyboard-row-size);
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 7px;
+}
+
+.keyboard-key {
+    height: 100%;
+    
+    border-radius: var(--keyboard-row-size);
+
+    margin: 0px;
+    padding: 0px;
+
+    cursor: pointer;
+
+    /*text settings*/
+    line-height: 1;
+    color: white;
+
+    border: 3px solid white;
+
+    transition: all ease-out 1s;
+}
+
+.keyboard-key:active {
+    background-color: rgba(255, 255, 255);
+}
+
+
+.char-key {
+    aspect-ratio: 1/1;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/*Special Character Types*/
+.enter {
+    aspect-ratio: 1.8/1;
+    text-align: right;
+}
+
+.backspace {
+    aspect-ratio: 1.5/1;
+    text-align: right;
+}
+
+.space {
+    aspect-ratio: 8/1;
+}
+
+.caps {
+    width: auto;
+}
+
+.special-key {
+    display: flex;
+    align-items: center;
+}
+
+.special-key p {
+    padding: 0px 15px;
+    flex-grow: 1;
+}
