@@ -11,22 +11,29 @@ import { Link } from 'react-router-dom';
 
 
 import { GameDisplay } from '../../contexts/GameDisplay';
+import { useGameWindow } from '../../contexts/GameDisplay'
 
 
 
 export default function Start() {
-    
-    const openWindow = () => {
-        window.gameScreen.open();
+
+    const { openGameWindow } = useGameWindow();
+    const [message, setMessage] = useState("It finally works!");
+
+
+    const changeMessage = () => {
+        setMessage("Hello World");
     }
+
 
     return (
         <div id="Start">
             <h1>Start Screen</h1>
-            <button onClick={openWindow}>Start Game</button>
+            <button onClick={openGameWindow}>Start Game</button>
+            <button onClick={changeMessage}>Change Message</button>
 
             <GameDisplay>
-                <h1>This is the Game Display</h1>
+                <h1 id="msg">{message}</h1>
             </GameDisplay>
         </div>
     );

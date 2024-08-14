@@ -21,6 +21,7 @@ if (require('electron-squirrel-startup')) { // Handle creating/removing shortcut
 /** MAIN WINDOW
  * @function createWindow creates the main window for the application
  * */
+let mainWindow;
 const createWindow = () => {
     const mainWindow = new BrowserWindow({
         width: 800,
@@ -38,13 +39,34 @@ const createWindow = () => {
     mainWindow.on('close', () => {
         app.quit();
     })
+
+    mainWindow.webContents.setWindowOpenHandler(({ url }) => {
+        return {
+            action: 'allow',
+            overrideBrowserWindowOptions: {
+                width: 800,
+                height: 600,
+                webPreferences: {
+                    contextIsolation: true,
+                    enableRemoteModule: false,
+                    nodeIntegration: false,
+                },
+            }
+        }
+    });
 };
+
+
+/** SECOND WINDOW
+ * @listener overrides second window creation options
+ * */
+
 
 
 /** SECOND WINDOW
  * @function createGameWindow creates the game window to display game outputs during gameplay
  * */
-
+let gameWindow;
 const createGameWindow = () => {
     const gameWindow = new BrowserWindow({
         width: 800,
@@ -56,7 +78,9 @@ const createGameWindow = () => {
         },
     });
 
-    gameWindow.loadURL(`${MAIN_WINDOW_WEBPACK_ENTRY}/#/second-screen`);
+    gameWindow.loadURL(`${MAIN_WINDOW_WEBPACK_ENTRY}/#/game-window`);
+
+    return gameWindow;
 }
 
 /** INITIALISE APP
@@ -64,12 +88,12 @@ const createGameWindow = () => {
  * -Some APIs can only be used after this event occurs.
  * */
 app.whenReady().then(() => {
-    createWindow();
+    mainWindow = createWindow();
 
     // On OS X it's common to re-create a window in the app when the dock icon is clicked and there are no other windows open.
     app.on('activate', () => {
         if (BrowserWindow.getAllWindows().length === 0) {
-            createWindow();
+            mainWindow = createWindow();
         }
     });
 });
@@ -83,6 +107,17 @@ app.on('window-all-closed', () => {
 });
 
 
-ipcMain.on('open-game-screen', (event, arg) => {
-    createGameWindow();
-});
+// ipcMain.handle('open-game-window', async (event, arg) => {
+//     if (!gameWindow) {
+//         gameWindow = createGameWindow();
+//     }
+
+//     gameWindow.on('closed', () => {
+//         gameWindow = null;
+//         event.sender.send('game-window-closed');
+//     })
+
+//     await gameWindow.loadURL(`${MAIN_WINDOW_WEBPACK_ENTRY}/#/game-window`);
+
+//     return gameWindow.webContents.id;
+// });

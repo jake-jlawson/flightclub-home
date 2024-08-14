@@ -587,6 +587,11 @@
     tar "^6.0.5"
     yargs "^17.0.1"
 
+"@electron/remote@^2.1.2":
+  version "2.1.2"
+  resolved "https://registry.npmjs.org/@electron/remote/-/remote-2.1.2.tgz"
+  integrity sha512-EPwNx+nhdrTBxyCqXt/pftoQg/ybtWDW3DUWHafejvnB1ZGGfMpv6e15D8KeempocjXe78T7WreyGGb3mlZxdA==
+
 "@electron/universal@^2.0.1":
   version "2.0.1"
   resolved "https://registry.npmjs.org/@electron/universal/-/universal-2.0.1.tgz"
@@ -1971,7 +1976,7 @@ electron-winstaller@^5.3.0:
   optionalDependencies:
     "@electron/windows-sign" "^1.1.2"
 
-electron@31.3.1:
+"electron@>= 13.0.0", electron@31.3.1:
   version "31.3.1"
   resolved "https://registry.npmjs.org/electron/-/electron-31.3.1.tgz"
   integrity sha512-9fiuWlRhBfygtcT+auRd/WdBK/f8LZZcrpx0RjpXhH2DPTP/PfnkC4JB1PW55qCbGbh4wAgkYbf4ExIag8oGCA==
