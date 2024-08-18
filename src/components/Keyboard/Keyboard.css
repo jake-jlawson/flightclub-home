@@ -1,5 +1,15 @@
 :root {
     --keyboard-row-size: 70px;
+    --special-row-separation: 15px;
+}
+
+#keyboard {
+    list-style-type: none;
+}
+
+.non-focusable {
+    pointer-events: auto;
+    user-select: none;
 }
 
 .keyboard-row {
@@ -10,6 +20,14 @@
     flex-direction: row;
     justify-content: center;
     gap: 7px;
+}
+
+#numberRow {
+    padding-bottom: 15px;
+}
+
+#spacebarRow {
+    padding-top: 20px;
 }
 
 .keyboard-key {
@@ -25,10 +43,13 @@
     /*text settings*/
     line-height: 1;
     color: white;
+    font-size: 22px;
 
     border: 3px solid white;
 
-    transition: all ease-out 1s;
+    transition: all 1ms;
+
+    user-select: none;
 }
 
 .keyboard-key:active {
@@ -45,21 +66,21 @@
 }
 
 /*Special Character Types*/
-.enter {
+.Enter {
     aspect-ratio: 1.8/1;
     text-align: right;
 }
 
-.backspace {
+.Backspace {
     aspect-ratio: 1.5/1;
     text-align: right;
 }
 
-.space {
-    aspect-ratio: 8/1;
+.Space {
+    aspect-ratio: 10/1;
 }
 
-.caps {
+.CapsLock {
     width: auto;
 }
 

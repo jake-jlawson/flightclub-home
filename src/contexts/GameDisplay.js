@@ -90,7 +90,7 @@ export function GameWindowProvider({ children }) {
 
 /** GAME DISPLAY COMPONENT
  * @component provides a component for wrapping content that needs to be displayed in the game window*/
-export function GameDisplay({ children }) {
+export function GameDisplay({ children, forceOpem }) {
 
     const { gameWindow, gameWindowRoot, openGameWindow } = useGameWindow();
 

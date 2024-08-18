@@ -28,15 +28,17 @@ const root = createRoot(container);
  * @component provides the primary component for rendering the app entry point*/
 root.render(
     <GameWindowProvider>
-        <HashRouter>
-            <Routes>
-                {/*Main window routes*/}
-                <Route path="/" element={<PlayerInput/>} />
-                <Route path="/player-input" element={<></>} />
+        <GameProvider>
+            <HashRouter>
+                <Routes>
+                    {/*Main window routes*/}
+                    <Route path="/" element={<PlayerInput/>} />
+                    <Route path="/player-input" element={<></>} />
 
-                {/*Game window rendering route*/}
-                <Route path="/game-window" element={<GameWindow/>} /> 
-            </Routes>
-        </HashRouter>
+                    {/*Game window rendering route*/}
+                    <Route path="/game-window" element={<GameWindow/>} /> 
+                </Routes>
+            </HashRouter>
+        </GameProvider>
     </GameWindowProvider>
 );
