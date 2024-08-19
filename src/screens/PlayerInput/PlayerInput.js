@@ -11,6 +11,14 @@ import './PlayerInput.css';
 
 //Component Imports
 import Keyboard from '../../components/Keyboard/Keyboard';
+import DartButton from '../../components/DartButton/DartButton';
+
+//Icons/Images Imports
+import { IoCheckmarkOutline } from "react-icons/io5";
+import profile_pic from '../../assets/images/blank_profile_pic.png'; // Profile Pic
+
+
+
 
 
 
@@ -28,14 +36,52 @@ export default function PlayerInput() {
 
     return (
         <div id="playerInput">
-            <form id="inputForm">
-                <input 
-                    type="text" 
-                    id="inputField"
-                    value={currentInput}
-                    onChange={(e) => setCurrentInput(e.target.value)}
-                ></input>
-            </form>
+            
+            <div id="playerNameField">
+                <h3 id="nameFieldTag">Player's Name:</h3>
+
+                <form id="inputForm">
+                    <input 
+                        type="text" 
+                        id="inputField"
+                        value={currentInput}
+                        placeholder='TYPE NAME'
+                        onChange={(e) => setCurrentInput(e.target.value)}
+                    ></input>
+
+                    <img className="player-pic" src={profile_pic}></img>
+                
+                    <DartButton 
+                        orientation={90}
+                        color={"grey"}
+                        action={1}>
+                            <div id="checkIcon">
+                                <IoCheckmarkOutline size={"4.5em"} color='white'/>
+                            </div>
+                    </DartButton>
+                    
+                </form>
+            </div>
+            
+            <div id="backButton">
+                <DartButton 
+                    orientation={"left"}
+                    color={"red"}
+                    action={1}
+                />
+                    <p>BACK</p>
+                <DartButton />
+            </div>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
             <Keyboard 
                 submitter={addNewPlayer} 
                 inputCapture={setCurrentInput}

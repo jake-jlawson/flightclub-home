@@ -2,7 +2,7 @@
     "_comment": "GAME.JSON FOR DEMOLITION GAME",
 
     "name": "Shanghai",
-    "description": "Aim for the number that corresponds to the current round. Highest scorer wins.",
+    "description": "Score as many points as you can over 8 rounds, with the target number matching the round number",
 
     "gradient": {
         "start": "#4f2414",

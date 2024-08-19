@@ -2,7 +2,7 @@
     "_comment": "GAME.JSON FOR KILLER GAME",
 
     "name": "Killer",
-    "description": "Hit your number to become the killer. Then target other players. Last person standing wins.",
+    "description": "Hit your own number 3 times before targetting your opponents number",
 
     "gradient": {
         "start": "#3b1218",

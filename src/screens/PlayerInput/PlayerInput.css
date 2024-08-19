@@ -1,18 +1,103 @@
+:root {
+    --left-shift: 20px;
+    --name-padding: 30px;
+}
+
 #playerInput {
     width: 100%;
     height: 100vh;
     background-color: #333b40;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 #inputForm {
-    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
 
-    padding: 20px 0px;
+    height: 80px;
+}
+
+#nameFieldTag {
+    margin: 0px;
+    text-transform: uppercase;
+
+    padding-left: calc(var(--name-padding) + var(--left-shift) + 5px);
+}
+
+#playerNameField {
+    display: flex;
+    flex-direction: column;
+    color: white;
+
+    position: relative;
+    left: var(--left-shift);
+
+    margin-bottom: 60px;
 }
 
 #inputField {
-    font-size: 50px;
+    width: 500px;
+
+    font-family: 'Bebas Neue', sans-serif; /* Corrected */
+    font-size: 70px;
+
+    height: 100%;
+    border: 0px;
+    vertical-align: baseline;
+
+    border-top-left-radius: 35px;
+    border-bottom-left-radius: 35px;
+
+    position: relative;
+    left: var(--left-shift);
+
+    padding-left: var(--name-padding);
+    padding-top: 7px;
+    box-sizing: border-box;
 }
+
+#inputField::placeholder {
+    color: #7e8285;
+}
+
+#backButton {
+    position: fixed;
+    height: 100%;
+    width: 50px;
+
+    left: 0px;
+}
+
+.player-pic {
+    height: 100%;
+    border-radius: 50%;
+    border: 7px solid white;
+
+    box-shadow: inset -200px -200px 7px -188px rgba(0,0,0,0.41);
+
+    z-index: 1;
+
+    transform: scale(1.15);
+
+    margin-right: 20px;
+}
+
+#entryButton {
+    height: 100%;
+    width: auto;
+    background-color: red;
+}
+
+#checkIcon {
+    padding-top: 20px;
+    padding-bottom: 15px;
+    padding-left: 12px;
+    padding-right: 20px;
+}
+
+

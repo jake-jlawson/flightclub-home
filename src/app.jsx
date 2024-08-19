@@ -12,6 +12,7 @@ import { HashRouter, Route, Routes } from 'react-router-dom';
 /*Context Imports*/
 import { GameProvider } from './contexts/GameContext';
 import { GameWindowProvider } from './contexts/GameDisplay';
+import { PlayerProvider } from './contexts/PlayerContext';
 
 /*Component Imports*/
 import GameSelect from './screens/GameSelect/GameSelect';
@@ -29,16 +30,18 @@ const root = createRoot(container);
 root.render(
     <GameWindowProvider>
         <GameProvider>
-            <HashRouter>
-                <Routes>
-                    {/*Main window routes*/}
-                    <Route path="/" element={<PlayerInput/>} />
-                    <Route path="/player-input" element={<></>} />
+            <PlayerProvider>
+                <HashRouter>
+                    <Routes>
+                        {/*Main window routes*/}
+                        <Route path="/" element={<PlayerInput/>} />
+                        <Route path="/player-input" element={<></>} />
 
-                    {/*Game window rendering route*/}
-                    <Route path="/game-window" element={<GameWindow/>} /> 
-                </Routes>
-            </HashRouter>
+                        {/*Game window rendering route*/}
+                        <Route path="/game-window" element={<GameWindow/>} /> 
+                    </Routes>
+                </HashRouter>
+            </PlayerProvider>
         </GameProvider>
     </GameWindowProvider>
 );

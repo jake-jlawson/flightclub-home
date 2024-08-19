@@ -3,7 +3,7 @@
 
     
     "name": "Donkey Derby",
-    "description": "Get to the finish line first by hitting your number. Hit other people's numbers to make them go back.",
+    "description": "Hit your number to move forward, or hit other people's to move them back... cross the finish line to win",
 
     "gradient": {
         "start": "#0b3728",

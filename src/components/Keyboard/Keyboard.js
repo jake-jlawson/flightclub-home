@@ -10,7 +10,7 @@ import './Keyboard.css';
 
 export default function Keyboard({ inputCapture, submitter }) {
     const [input, setInput] = useState("");
-    const [caps, setCaps] = useState(false);
+    const [caps, setCaps] = useState(true);
 
     
     //Modify input
@@ -169,7 +169,7 @@ function Key({ char, keyClick, caps }) {
             return `n${char}`;
         }
 
-        return char;
+        return char.toUpperCase();
     }
 
     return (
