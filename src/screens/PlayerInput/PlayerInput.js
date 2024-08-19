@@ -12,6 +12,7 @@ import './PlayerInput.css';
 //Component Imports
 import Keyboard from '../../components/Keyboard/Keyboard';
 import DartButton from '../../components/DartButton/DartButton';
+import BorderDecoration from '../../components/BorderDecoration/BorderDecoration';
 
 //Icons/Images Imports
 import { IoCheckmarkOutline } from "react-icons/io5";
@@ -37,6 +38,8 @@ export default function PlayerInput() {
     return (
         <div id="playerInput">
             
+            <BorderDecoration/>
+
             <div id="playerNameField">
                 <h3 id="nameFieldTag">Player's Name:</h3>
 
@@ -69,7 +72,7 @@ export default function PlayerInput() {
                     color={"red"}
                     action={1}
                 />
-                    <p>BACK</p>
+                    <p></p>
                 <DartButton />
             </div>
             

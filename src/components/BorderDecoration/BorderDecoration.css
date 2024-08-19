@@ -1,0 +1,69 @@
+#borderDecoration {
+    position: fixed;
+
+    width: 100vw;
+    height: 100vh;
+
+    z-index: 100;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    mix-blend-mode: screen;
+    opacity: 0.9;
+}
+
+#borderOuter {
+    --outer-padding: 8px;
+
+    position: relative;
+    
+    height: calc(100% - var(--outer-padding) * 2);
+    width: calc(100% - var(--outer-padding) * 2);
+    
+    box-sizing: border-box;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    /*Border Style*/
+    border: 2px solid white;
+}
+
+#borderInner {
+    --inner-padding: 10px;
+    
+    position: relative;
+    
+    height: calc(100% - var(--inner-padding) * 2);
+    width: calc(100% - var(--inner-padding) * 2);
+    
+    box-sizing: border-box;
+
+    /*Border Style*/
+    border: 1.5px dotted white;
+}
+
+.border-tag {
+    background-color: blue;
+    width: 100px;
+    height: 35px;
+
+    position: fixed;
+
+    z-index: 101;
+}
+
+#flightClubTag {
+    top: 0;
+}
+
+#gameTag {
+    bottom: 0;
+}
+
+.hidden {
+    display: none;
+}
