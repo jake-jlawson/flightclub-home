@@ -36,7 +36,7 @@ export default function DartButton({ children, orientation, color, action }) {
     
     return (
         
-        <button id="dartButton">
+        <button id="dartButton" onClick={action}>
             <svg
                 id="dartSVG"
                 data-name="Layer 2"

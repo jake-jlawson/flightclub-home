@@ -9,6 +9,7 @@ import './ActionButton.css';
 // icons imports
 import { TbTargetArrow } from "react-icons/tb";
 import { IoPlayCircleOutline } from "react-icons/io5";
+import { PiCameraFill } from "react-icons/pi";
 
 
 
@@ -18,7 +19,8 @@ export default function ActionButton({ text, icon, action, icon_size }) {
     // icons list
     const icons = {
         "target": <TbTargetArrow size={icon_size}/>,
-        "play": <IoPlayCircleOutline size={icon_size}/>
+        "play": <IoPlayCircleOutline size={icon_size}/>,
+        "camera": <PiCameraFill size={icon_size}/>
     }
     
     return (

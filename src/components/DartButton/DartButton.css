@@ -8,6 +8,8 @@
     height: auto;
 
     padding: 0px;
+
+    cursor: pointer;
 }
 
 #dartSVG {

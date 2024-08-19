@@ -12,6 +12,8 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+
+    z-index: -1;
 }
 
 #inputForm {
@@ -101,3 +103,108 @@
 }
 
 
+
+/*PHOTO CAPTURE COMPONENT*/
+#photoWindow {
+    background-color: black;
+    height: 600px;
+    aspect-ratio: 1/1;
+
+    /*Make circular*/
+    border-radius: 50%;
+
+    /*Border Settings*/
+    border: 25px solid white;
+
+    display: flex;
+    justify-content: center;
+
+    position: relative;
+
+    overflow: hidden;
+
+}
+
+.photoCountdown {
+
+    height: 100px;
+    aspect-ratio: 1/1;
+
+    position: absolute;
+    top: 8vh;
+
+    border-radius: 50%; /*Make circular*/
+    border: 10px solid white;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    z-index: 10;
+}
+
+.photoCountdown h1 {
+    color: white;
+
+    font-size: 5em;
+
+    margin: 0px;
+
+    line-height: 2;
+
+    position: relative;
+    top: -5px;
+}
+
+#videoStream {
+    --zoom: 1.5;
+    
+    position: relative;
+    transform: scaleX(-1);
+
+    filter: grayscale(24%) saturate(118%) contrast(127%) brightness(115%);
+}
+
+#flash {
+    z-index: 9;
+
+    width: 100%;
+    height: 100%;
+
+    position: absolute;
+
+    transition: all 0.2s ease-out;
+}
+
+.photo-flash {
+    background-color: white;
+}
+
+#photoCaptureControls {
+    position: fixed;
+    
+    width: 100vw;
+    height: 100vh;
+
+    z-index: 9;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.control-area {
+    display: flex;
+    align-items: center;
+
+    padding-right: 40px;
+}
+
+.confirm-photo {
+    background-color: #0cc474;
+    cursor: pointer;
+}
+
+.countdown {
+    background-color: #4c5357;
+}

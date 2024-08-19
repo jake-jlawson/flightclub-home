@@ -22,16 +22,22 @@ export function PlayerProvider({ children }) {
     // Globally available states and methods
     const [players, setPlayers] = useState([]); //state to store players
 
+    // Add a new player to the list of players
     const addPlayer = (player_name, player_pic) => {
         const newPlayer = new Player(player_name, player_pic);
         setPlayers([...players, newPlayer]);
     }
 
 
+    useEffect(() => {
+        console.log("Players: ", players);
+    }, [players])
+
+
 
     const context = {
         players,
-        setPlayers
+        addPlayer
     };
 
     return (
