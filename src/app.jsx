@@ -19,6 +19,7 @@ import GameSelect from './screens/GameSelect/GameSelect';
 import Start from './screens/Start/Start';
 import GameWindow from './screens/GameWindow/GameWindow';
 import PlayerInput from './screens/PlayerInput/PlayerInput';
+import PlayerConfig from './screens/PlayerConfig/PlayerConfig';
 
 
 const container = document.getElementById('root');
@@ -34,8 +35,12 @@ root.render(
                 <HashRouter>
                     <Routes>
                         {/*Main window routes*/}
-                        <Route path="/" element={<PlayerInput/>} />
-                        <Route path="/player-input" element={<></>} />
+                        <Route path="/" element={<PlayerConfig/>} />
+                        <Route path="/player-config" element={<PlayerConfig/>} />
+                        <Route path="/player-input" element={<PlayerInput/>} />
+
+                        {/*Game select route*/}
+                        <Route path="/game-select" element={<GameSelect/>} />
 
                         {/*Game window rendering route*/}
                         <Route path="/game-window" element={<GameWindow/>} /> 

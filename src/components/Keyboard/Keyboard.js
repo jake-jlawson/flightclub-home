@@ -46,38 +46,6 @@ export default function Keyboard({ inputCapture, submitter }) {
         };
     }
 
-    //Capture keydown events
-    const handleKeyDown = (e) => {
-        
-        //get the key pressed
-        let key;
-        if (e.key === " ") {
-            key = "Space";
-        } else if (/\d/.test(e.key)) {
-            key = `n${e.key}`;
-        } else if (e.key.length < 2) {
-            key = e.key.toUpperCase();
-        } else {
-            key = e.key;
-        }
-
-        let element = document.querySelector(`.${key}`); //find that key on the keyboard
-
-        if (element) {
-            // element.click(); //simulate a click
-
-            let click_event = new MouseEvent('click', {
-                view: window,
-                bubbles: true,
-                cancelable: true
-            });
-
-            element.dispatchEvent(click_event);
-
-        } else {
-            console.log(`No element found with class name: ${key}`);
-        }
-    }
 
     //Keep input in sync
     useEffect(() => {
@@ -87,13 +55,55 @@ export default function Keyboard({ inputCapture, submitter }) {
 
     //Add event listeners
     useEffect(() => {
-        document.querySelector('.non-focusable').addEventListener('mousedown', function(event) {
+        
+        const handleMouseDown = (event) => {
             event.preventDefault();
-        });
+        };
 
-        document.addEventListener('keydown', function(event) {
-            handleKeyDown(event);
-        });
+        //Capture keydown events
+        const handleKeyDown = (e) => {
+            
+            //get the key pressed
+            let key;
+            if (e.key === " ") {
+                key = "Space";
+            } else if (/\d/.test(e.key)) {
+                key = `n${e.key}`;
+            } else if (e.key.length < 2) {
+                key = e.key.toUpperCase();
+            } else {
+                key = e.key;
+            }
+
+            let element = document.querySelector(`.${key}`); //find that key on the keyboard
+
+            if (element) {
+                // element.click(); //simulate a click
+
+                let click_event = new MouseEvent('click', {
+                    view: window,
+                    bubbles: true,
+                    cancelable: true
+                });
+
+                element.dispatchEvent(click_event);
+
+            } else {
+                console.log(`No element found with class name: ${key}`);
+            }
+        }
+
+        const nonFocusable = document.querySelector('.non-focusable');
+        nonFocusable.addEventListener('mousedown', handleMouseDown);
+        document.addEventListener('keydown', handleKeyDown);
+
+
+        return () => {
+            if (nonFocusable) {
+                nonFocusable.removeEventListener('mousedown', handleMouseDown);
+            }
+            document.removeEventListener('keydown', handleKeyDown);
+        }
     }, [])
     
 

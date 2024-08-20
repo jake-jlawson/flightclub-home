@@ -118,8 +118,6 @@
     aspect-ratio: 1/1;
     height: var(--icon-height);
 
-    background-color: yellow;
-
     transition: all 0.3s ease; /*transition properties, smooth transition*/
 
     margin: var(--icon-padding);

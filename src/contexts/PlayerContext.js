@@ -19,14 +19,37 @@ export function usePlayers() { //Players custom hook
 /*PLAYER CONTEXT PROVIDER*/
 export function PlayerProvider({ children }) {
 
+
     // Globally available states and methods
     const [players, setPlayers] = useState([]); //state to store players
 
-    // Add a new player to the list of players
+
+    /** ADD PLAYER
+     * @function addPlayer Adds a new player to the players list*/
     const addPlayer = (player_name, player_pic) => {
-        const newPlayer = new Player(player_name, player_pic);
+        
+        let number_of_players = players.length;
+        
+        if (number_of_players === 12) { //check for max players
+            console.error("Max players reached");
+            return;
+        }
+        
+        const newPlayer = new Player(player_name, player_pic, number_of_players);
         setPlayers([...players, newPlayer]);
     }
+
+
+    /** REMOVE PLAYER
+     * @function removePlayer Remove player from the players list*/
+    const removePlayer = (player_id) => {
+        
+        let updatedPlayers = players.filter(player => player.id !== player_id);
+        setPlayers(updatedPlayers);
+    }
+
+
+
 
 
     useEffect(() => {
@@ -37,7 +60,8 @@ export function PlayerProvider({ children }) {
 
     const context = {
         players,
-        addPlayer
+        addPlayer,
+        removePlayer
     };
 
     return (
@@ -50,9 +74,9 @@ export function PlayerProvider({ children }) {
 
 
 /*PLAYER CLASS*/
-class Player {
-    constructor(name, pic) {
-        this.id = 0;
+export class Player {
+    constructor(name, pic, id) {
+        this.id = id;
         this.name = name;
         this.img = pic;
 

@@ -7,6 +7,7 @@
 
 /*Imports*/
 import React, { useState, useEffect, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './PlayerInput.css';
 
 //Component Imports
@@ -71,7 +72,7 @@ export default function PlayerInput() {
 
 
 function NameInput({ addFunction, playerName, setPlayerName }) {
-   
+
     return (
         <>
             {/*Player Entry Field*/}
@@ -132,6 +133,9 @@ function PhotoCapture({ toggleCapture, playerToCapture }) {
     // Player data states
     const [playerPic, setPlayerPic] = useState(null);
     const { addPlayer } = usePlayers();
+
+    // Navigation hook
+    const navigate = useNavigate();
 
 
     // Handle Countdown logic
@@ -236,7 +240,10 @@ function PhotoCapture({ toggleCapture, playerToCapture }) {
                 countDown === 0 ?
                 <div 
                     className="photoCountdown confirm-photo"
-                    onClick={() => addPlayer(playerToCapture, playerPic)}
+                    onClick={() => {
+                        addPlayer(playerToCapture, playerPic);
+                        navigate("/player-config");
+                    }}
                 >
                     <IoCheckmarkOutline size={"4.5em"} color='white'/>
                 </div>
