@@ -31,7 +31,7 @@ export default function PlayerIcon({ player, edit, add, remove }) {
      */
     
     const [playerName, setPlayerName] = useState("");
-    const [playerImg, setPlayerImg] = useState(some_pic);
+    const [playerImg, setPlayerImg] = useState();
     const [iconClass, setIconClass] = useState("player-icon");
 
     //Hooks

@@ -1,0 +1,14 @@
+/*
+    GAME HOSTER: CSS
+*/
+#Game {
+    background-color: deeppink;
+}
+
+#gameStartScreen {
+    background-color: blue;
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+}

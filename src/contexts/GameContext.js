@@ -17,6 +17,7 @@ export function useGames() { // Custom hook to use the game context
 const gameComponentContext = require.context('../games', true, /^\.\/[^\/]+\/[^\/]+\.js$/);
 const gameDataContext = require.context('../games', true, /^\.\/[^\/]+\/game\.json$/);
 const gameLogoContext = require.context('../games', true, /\/[^\/]+\/logo2\.png$/);
+const gameLogoStandardContext = require.context('../games', true, /\/[^\/]+\/logo_standard\.png$/);
 const gameIconContext = require.context('../games', true, /\/[^\/]+\/icon\.png$/);
 
 
@@ -43,6 +44,10 @@ export function GameProvider({ children }) {
             const logoKey = gameLogoContext.keys().find(logoKey => logoKey.includes(`/${gameID}/logo2.png`));
             const gameLogo = logoKey ? gameLogoContext(logoKey).default : null;
 
+            // Load corresponding standard logo
+            const logoStandardKey = gameLogoStandardContext.keys().find(logoStandardKey => logoStandardKey.includes(`/${gameID}/logo_standard.png`));
+            const gameLogoStandard = logoStandardKey ? gameLogoStandardContext(logoStandardKey).default : null;
+
             // Load corresponding icon
             const iconKey = gameIconContext.keys().find(iconKey => iconKey.includes(`/${gameID}/icon.png`));
             const gameIcon = iconKey ? gameIconContext(iconKey).default : null;
@@ -51,7 +56,7 @@ export function GameProvider({ children }) {
             const gameComponent = gameComponentContext(key).default;
 
 
-            return new Game(gameID, gameLogo, gameIcon, gameData, gameComponent);
+            return new Game(gameID, gameLogo, gameLogoStandard, gameIcon, gameData, gameComponent);
         });
 
         setGames(loadedGames);
@@ -73,9 +78,10 @@ export function GameProvider({ children }) {
 
 /*GAME CLASS - For encapsulating game information and game components*/
 class Game {
-    constructor(id, logo, icon, data, entry_point) {
+    constructor(id, logo, logo_standard, icon, data, entry_point) {
         this.id = id;
         this.logo = logo;
+        this.logo_standard = logo_standard;
         this.icon = icon;
 
         this.parseData(data);
@@ -88,5 +94,16 @@ class Game {
         this.description = data.description;
 
         this.gradient = data.gradient;
+    }
+
+    getGradient() {
+        
+        if (!this.gradient) {
+            console.error("No gradient found for game", this.id)
+            return "#3f3b2c";
+        } else {
+            return `linear-gradient(180deg, ${this.gradient.start} 0%, ${this.gradient.end} 50%)`;
+        }
+        
     }
 }

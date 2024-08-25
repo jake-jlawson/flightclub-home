@@ -6,11 +6,19 @@
 import React, { useEffect, useState } from "react";
 import './GameSelect.css';
 import app_logo from '../../assets/images/app_logo.png'; // App logo
+import { useNavigate } from "react-router-dom";
 
 import { useGames } from '../../contexts/GameContext'; // Game context
 
 /*REACT COMPONENTS*/
 import ActionButton from "../../components/ActionButton";
+
+//Image/Icon Imports
+import { GiDart, GiStarMedal,  } from "react-icons/gi";
+import { GrSettingsOption } from "react-icons/gr";
+import { GiExitDoor } from "react-icons/gi";
+
+
 
 
 
@@ -79,13 +87,83 @@ function GamePreview({ activeGame }) {
                     </div>
                 </div>
 
-            ) : (
+            ) : (<GamePlaceholderMenu/>)}
+        </div>
+    );
+}
 
-                <div id="PreviewPlaceholder">
-                    <img id="appLogo" src={app_logo} alt="Darts Scorer Logo"/>
+
+/*GAME PLACEHOLDER MENU
+Area to show placeholder and menu when a game is not selected*/
+function GamePlaceholderMenu() {
+    return (
+        <div id="PreviewPlaceholder">
+            <img id="appLogo" src={app_logo} alt="Darts Scorer Logo"/>
+
+            <div id="placeholderMenu">
+                <div className="placeholder-menu-column column1">
+                    <MenuItem //Edit Players
+                        icon={<GiDart size={"5em"} style={{"transform": "scaleX(-1)"}}/>} 
+                        text={"Edit Players"}
+                        route={"/player-config"}
+                        orientation={"menu-item-left"}/>
+                    <MenuItem //Settings
+                        icon={<GrSettingsOption 
+                                size={"4em"}
+                                style={{"marginRight": "20px"}}/>}
+                        text={"Settings"}
+                        route={"/settings"}
+                        orientation={"menu-item-right"}/>
                 </div>
+                <div className="placeholder-menu-column column2">
+                    
+                    <MenuItem //Leaderboard
+                        icon={<GiStarMedal size={"5em"}/>}
+                        text={"Leaderboard"}
+                        route={"/leaderboard"}
+                        orientation={"menu-item-left"}/>
+                    <MenuItem //Exit
+                        icon={<GiExitDoor size={"5em"}/>}
+                        text={"Exit Game"}
+                        route={"/"}
+                        orientation={"menu-item-right"}/>
+                </div>
+            </div>
+        </div>
+    );
+}
 
-            )}
+function MenuItem({ icon, text, orientation, route }) {
+
+    //Hooks
+    const navigate = useNavigate();
+
+    //Menu item options
+    const icon_color = "#E4E0D7";
+
+
+    const handleClick = () => {
+        navigate(route);
+    }
+
+
+    return (
+        <div className={`menu-item ${orientation}`} onClick={handleClick}>
+            
+            {
+                orientation === "menu-item-left" ? (
+                    <>
+                        <h3 style={{"color": `${icon_color}`}}><em>{text}</em></h3>
+                        {React.cloneElement(icon, {color: icon_color})}
+                    </>
+                ) : (
+                    <>
+                        {React.cloneElement(icon, {color: icon_color})}
+                        <h3 style={{"color": `${icon_color}`}}><em>{text}</em></h3>
+                    </>
+                )
+            }
+
         </div>
     );
 }
@@ -117,7 +195,7 @@ function GameCarousel({ activeGame, setActiveGame }) {
 Game icons*/
 function GameIcon(props) {
     // Change class based on active state
-    const icon_class = props.isActive ? "game-icon game-icon-active" : "game-icon";
+    const icon_class = props.isActive ? "game-icon game-icon-hover game-icon-active" : "game-icon game-icon-hover";
 
     const changeActiveGame = (e) => {
         if (props.isActive) {
@@ -128,8 +206,8 @@ function GameIcon(props) {
     }
     
     return (
-        <div className={icon_class}>
-            <img src={props.icon} alt="Description of image" onClick={changeActiveGame}/>
+        <div className={icon_class} onClick={changeActiveGame}>
+            <img src={props.icon} alt="Description of image"/>
         </div>
     );
 }

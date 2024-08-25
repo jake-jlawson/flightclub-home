@@ -1,4 +1,4 @@
-#borderDecoration {
+.borderDecoration {
     position: fixed;
 
     width: 100vw;
@@ -10,8 +10,7 @@
     justify-content: center;
     align-items: center;
 
-    mix-blend-mode: screen;
-    opacity: 0.9;
+    opacity: 0.8;
 }
 
 #borderOuter {
@@ -46,24 +45,43 @@
     border: 1.5px dotted white;
 }
 
+
+/*Tags*/
 .border-tag {
-    background-color: blue;
-    width: 100px;
-    height: 35px;
+    height: auto;
 
     position: fixed;
 
     z-index: 1;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-#flightClubTag {
+.flightClubTag {
+    width: 100px;
+    
     top: 0;
 }
 
-#gameTag {
-    bottom: 0;
+.gameTag {
+    bottom: -5px;
+    width: 200px;
 }
 
 .hidden {
     display: none;
+}
+
+.flight-club-logo {
+    width: 90%;
+    margin-top: 5px;
+}
+
+.decoration-game-logo {
+    width: 90%;
+    z-index: 1000;
+
+    object-fit: cover;
 }

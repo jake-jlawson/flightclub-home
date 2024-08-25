@@ -30,24 +30,6 @@
     padding-top: 5vh;
 }
 
-#PreviewPlaceholder {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-
-    color: white;
-
-    width: 100%;
-    height: 100%;
-}
-
-#appLogo {
-    width: 350px;
-    position: relative;
-    top: -20px;
-}
-
 #PreviewArea {
     display: flex;
     flex-direction: column;
@@ -123,7 +105,7 @@
     margin: var(--icon-padding);
 }
 
-.game-icon:hover {
+.game-icon-hover:hover {
     height: calc(var(--icon-height)*1.1);
     border: 3px solid white;
 }
@@ -137,3 +119,99 @@
     height: calc(var(--icon-height)*1.1);
     border: 3px solid white;
 }
+
+
+
+/*GAME PLACEHOLDER AND MENU*/
+#PreviewPlaceholder {
+    --base-spacing: 350px;
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    color: white;
+
+    width: 100%;
+    height: 100%;
+
+    position: relative;
+}
+
+#appLogo {
+    width: 350px;
+    position: absolute;
+    top: 80px;
+}
+
+#placeholderMenu {
+    height: auto;
+    width: 100%;
+
+    z-index: 10;
+
+    /*flex settings*/
+    display: flex;
+    flex-direction: column;
+    align-items: space-between;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.placeholder-menu-column {
+    height: 100%;
+    width: 100%;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.column1 {
+    gap: var(--base-spacing);
+}
+
+.column2 {
+    gap: calc(var(--base-spacing) + 100px);
+}
+
+.menu-item {
+    /* --middle-spacing: 230px; */
+    
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    height: 100px;
+    width: 300px;
+
+    cursor: pointer;
+}
+
+.menu-item-left {
+    justify-content: flex-end;
+    /* margin-right: var(--middle-spacing); */
+}
+
+.menu-item-right {
+    justify-content: flex-start;
+    padding-left: 15px;
+
+}
+
+.menu-item h3 {
+    text-wrap: nowrap;
+}
+
+.menu-item:hover {
+    text-shadow: rgba(245,245,245,0.9) 0px 0px 20px;
+    color: white;
+    transition: all 0.3s ease;
+}
+
+
+
+
+
