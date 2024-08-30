@@ -258,6 +258,18 @@ export const KillerLogicProvider = ({ children, killer_teams }) => {
         }
     }
 
+    const updateTeamAttribute = (target_team, attribute, value) => {
+        let updatedTeams = teams.map((team) => {
+            
+            if (team.id === target_team.id) {
+                return {...team, [attribute]: value};
+            } else {
+                return team;
+            }
+        });
+
+        setTeams(updatedTeams);
+    }
 
 
     const context_vals = {
@@ -272,7 +284,8 @@ export const KillerLogicProvider = ({ children, killer_teams }) => {
         gameActive,
         nextRound,
         nextTeam,
-        activeTeam
+        activeTeam,
+        updateTeamAttribute
     };
 
     return (
@@ -293,17 +306,21 @@ class KillerTeam {
         this.score = 0;
 
         this.color = this.setColor();
+
+        this.activePlayer = this.players[0];
+
+        this.team_icon_location = [[0, 0], [0, 0]];
     }
 
-    setIsKiller(isKiller) {
+    setIsKiller(isKiller) { //set team to killer
         this.isKiller = isKiller;
     } 
 
-    assignNumber(number) {
+    assignNumber(number) { //assign team dart board number
         this.board_number = number;
     }
 
-    setColor() {
+    setColor() { //set team color
         const playerColors = [
             "#00a6f2",
             "#f0cf2e",
@@ -315,6 +332,16 @@ class KillerTeam {
         ]
 
         return playerColors[this.id];
+    }
+
+    nextPlayer() { //move to next player
+        let currentIdx = this.players.indexOf(this.activePlayer);
+
+        if (currentIdx === this.players.length - 1) {
+            this.activePlayer = this.players[0];
+        } else {
+            this.activePlayer = this.players[currentIdx + 1];
+        }
     }
 }
 

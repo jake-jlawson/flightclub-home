@@ -97,10 +97,30 @@
 #boardPNG {
     position: absolute;
     object-fit: cover;
-    width: 80%;
+    width: 75%;
     aspect-ratio: 1/1;
 
     z-index: 2;
 
     opacity: 0.4;
+}
+
+.team-text {
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 4em;
+}
+
+
+/* Player Icons */
+#teamsIcons {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+
+    z-index: 100;
+}
+
+.team-icon {
+    position: absolute;
+    border: 2px solid white;
 }

@@ -23,6 +23,9 @@ import PlayerConfig from './screens/PlayerConfig/PlayerConfig';
 import Game from './screens/Game/Game';
 
 import Killer from './games/killer/Killer';
+import DonkeyDerby from './games/donkeyderby/DonkeyDerby';
+
+import jakepic from './assets/images/jakepic.png';
 
 
 const container = document.getElementById('root');
@@ -31,13 +34,13 @@ const root = createRoot(container);
 
 //Tests
 //create some test players
-const player1 = new Player("Jake", "https://via.placeholder.com/150", 1);
-const player2 = new Player("Simon", "https://via.placeholder.com/150", 1);
-const player3 = new Player("Carolyn", "https://via.placeholder.com/150", 1);
-const player4 = new Player("Josh", "https://via.placeholder.com/150", 1);
+const player1 = new Player("Jake", jakepic, 1);
+const player2 = new Player("Simon", jakepic, 1);
+const player3 = new Player("Carolyn", jakepic, 1);
+const player4 = new Player("Josh", jakepic, 1);
 //create some test teams
 // const teams = [[player1], [player2], [player3, player4]];
-const teams = [[player1], [player2], [player3, player4], [player1], [player1]];
+const teams = [[player1], [player2], [player3], [player3]];
 
 
 /** APP COMPONENT
@@ -46,10 +49,11 @@ root.render(
     <GameWindowProvider>
         <GameProvider>
             <PlayerProvider>
+
                 <HashRouter>
                     <Routes>
                         {/*Main window routes*/}
-                        <Route path="/" element={<Killer teams={teams}/>} />
+                        <Route path="/" element={<DonkeyDerby teams={teams}/>} />
                         <Route path="/player-config" element={<PlayerConfig/>} />
                         <Route path="/player-input" element={<PlayerInput/>} />
 
@@ -60,6 +64,7 @@ root.render(
                         <Route path="/game-window" element={<GameWindow/>} /> 
                     </Routes>
                 </HashRouter>
+                
             </PlayerProvider>
         </GameProvider>
     </GameWindowProvider>

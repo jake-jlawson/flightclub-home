@@ -1,0 +1,87 @@
+
+.game-player-icon {
+    height: 100%;
+    width: auto;
+
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+.team-player-icon {
+    height: 100%;
+    position: relative;
+}
+
+.team-player-icon img {
+    aspect-ratio: 1/1;
+    object-fit: cover;
+    height: 75%;
+
+    border-radius: 50%;
+    overflow: hidden;
+    border-style: solid;
+    border-width: 0.3em;
+
+    transform: scaleX(-1);
+}
+
+.team-player-icon p {
+    margin: 0px;
+    text-align: center;
+
+    font-family: 'Bebas Neue', sans-serif;
+    color: white;
+
+    line-height: 1;
+    font-size: 1.5em;
+
+    flex-grow: 0;
+    padding-top: 2px;
+}
+
+.throw-counter {
+    width: 20px;
+    height: 85%;
+
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 3px;
+}
+
+.dart-spacer {
+    height: 20px;
+    width: 20px;
+}
+
+
+/*Active Player Animation*/
+
+
+.border-animation::before {
+    content: '';
+    position: absolute;
+
+    aspect-ratio: 1/1;
+    height: 75%;
+    border: 0.3em solid white; /* Border color and width */
+    border-radius: 50%;
+
+    border-top-color: transparent;
+    animation: spin 1s linear infinite;
+
+    z-index: 10;
+
+    opacity: 1;
+    mix-blend-mode: overlay;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}

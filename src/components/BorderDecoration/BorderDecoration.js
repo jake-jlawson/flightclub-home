@@ -17,8 +17,6 @@ export default function BorderDecoration({ fc_logo, game_logo }) {
 
 
     useEffect(() => {
-        
-        console.log(fc_logo, game_logo);
 
         //set flightclub logo if true
         if (fc_logo) { setShowFCLogo(true); }
@@ -28,11 +26,6 @@ export default function BorderDecoration({ fc_logo, game_logo }) {
         
     }, [fc_logo, game_logo])
 
-    useEffect(() => {
-        console.log('showFCLogo:', showFCLogo);
-        console.log('showGameLogo:', showGameLogo);
-    }, [showFCLogo, showGameLogo])
-    
 
     return (
         <div className="borderDecoration">

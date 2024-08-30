@@ -75,7 +75,6 @@ export function GameProvider({ children }) {
     );
 }
 
-
 /*GAME CLASS - For encapsulating game information and game components*/
 class Game {
     constructor(id, logo, logo_standard, icon, data, entry_point) {
@@ -107,3 +106,8 @@ class Game {
         
     }
 }
+
+
+
+
+

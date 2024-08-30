@@ -1,0 +1,9 @@
+
+#ddControlWindow {
+    background: linear-gradient(180deg, #0b3728 0%, #0b7c5c 50%);
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}

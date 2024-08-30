@@ -49,15 +49,6 @@ export function PlayerProvider({ children }) {
     }
 
 
-
-
-
-    useEffect(() => {
-        console.log("Players: ", players);
-    }, [players])
-
-
-
     const context = {
         players,
         addPlayer,

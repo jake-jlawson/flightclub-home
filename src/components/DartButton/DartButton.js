@@ -9,7 +9,7 @@ import './DartButton.css';
 
 
 /** COMPONENT DEFINITION */
-export default function DartButton({ children, orientation, color, action }) {
+export default function DartButton({ children, orientation, color, action, unchecked }) {
     
     /**PROPS DEFINITIONS
      * @prop {JSX} renderInside - JSX to render inside the button
@@ -21,7 +21,8 @@ export default function DartButton({ children, orientation, color, action }) {
     const colorTable = { //default dart button colours
         red: "#E8344F",
         grey: "#727d8c",
-        green: "#0cc474"
+        green: "#0cc474",
+        white: "#ffffff"
     }
 
     const rotationTable = {
@@ -42,7 +43,9 @@ export default function DartButton({ children, orientation, color, action }) {
                 data-name="Layer 2"
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 370.36 292.03"
-                fill={colorTable[color]}
+                fill={unchecked ? "none" : colorTable[color]} // Fill color only when not unchecked
+                stroke={unchecked ? colorTable[color] : "none"} // Conditional stroke color
+                strokeWidth={unchecked ? "30" : "0"} // Conditional stroke width
                 style={{"transform": `rotate(${rotationTable[orientation]})`}}
             >
                 <path 

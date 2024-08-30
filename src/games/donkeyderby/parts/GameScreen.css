@@ -1,0 +1,110 @@
+/*
+    GAME SCREEN GENERAL CSS
+*/
+:root {
+    --GameScreenBottom: 65px;
+    --GameScreenTop: 30px;
+    --finishLineWidth: 100px;
+}
+
+#ddGameScreen {
+    background: linear-gradient(180deg, #0b3728 0%, #0b7c5c 50%);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/*
+    ROUND COUNTER
+*/
+#ddRoundCounter {
+    width: 50%;
+    height: 50px;
+
+    margin-top: var(--GameScreenTop);
+}
+
+
+/*
+    TEAM PLAYER ZONE
+*/
+#teamPlayZone {
+    height: 70%;
+    
+    width: 100%;
+    padding-right: calc(var(--borderMargin) + var(--finishLineWidth));
+    
+    margin-bottom: var(--GameScreenBottom);
+
+    display: flex;
+    flex-direction: column;
+    justify-content: baseline;
+    align-items: center;
+    gap: 10px;
+
+    box-sizing: border-box;
+}
+
+.team-zone {
+    width: 100%;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.dd-team-icon {
+    height: 60%;
+    position: relative;
+    width: 25%;
+    /* background-color: green; */
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+
+    box-sizing: border-box;
+}
+
+.donkey-run {
+    height: 100%;
+    width: 75%;
+    overflow-x: visible;
+}
+
+@keyframes donkeyMove {
+    0% { x: 0%; }
+    100% { x: 100%; }
+}
+
+.donkey-track image {
+    animation: moveX 3s linear infinite;
+}
+
+
+
+/*
+    FINISH LINE
+*/
+#finishLine {
+    height: calc(100% - 2 * var(--borderMargin));
+    width: var(--finishLineWidth);
+
+    position: absolute;
+    right: var(--borderMargin);
+    top: 0;
+
+    padding-top: var(--borderMargin);
+    padding-bottom: var(--borderMargin);
+}
+
+#finishLine img {
+    height: 100%;
+    width: 100%;
+    object-fit: fill;
+
+    mix-blend-mode: lighten;
+
+    opacity: 0.8;
+}

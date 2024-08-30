@@ -27,11 +27,16 @@ export function GameWindowProvider({ children }) {
 
     const [gameWindow, setGameWindow] = useState(null); // game window reference
     const [gameWindowRoot, setGameWindowRoot] = useState(null); // game window root reference
+    const [gameWindowDimensions, setGameWindowDimensions] = useState({ width: 0, height: 0 }); // game window dimensions
 
     //Open the game window
     const openGameWindow = () => {
         if (gameWindow) { // check for already open game window
             console.log("Game Window Already Opened", gameWindow);
+            setGameWindowDimensions({
+                width: gameWindow.innerWidth,
+                height: gameWindow.innerHeight
+            });
             return;
         }
 
@@ -39,6 +44,10 @@ export function GameWindowProvider({ children }) {
         let win = window.open(gameWindowURL, "game-window", ""); //open window with game window route
         
         setGameWindow(win);
+        setGameWindowDimensions({
+            width: win.innerWidth,
+            height: win.innerHeight
+        });
     };
 
 
@@ -71,13 +80,34 @@ export function GameWindowProvider({ children }) {
             });
         }
     }, [gameWindow]);
+
+
+    //Handle window resize
+    useEffect(() => {
+        if (gameWindow) {
+            const handleResize = () => {
+                setGameWindowDimensions({
+                    width: gameWindow.innerWidth,
+                    height: gameWindow.innerHeight
+                });
+            };
+
+            gameWindow.addEventListener('resize', handleResize);
+
+            return () => {
+                gameWindow.removeEventListener('resize', handleResize);
+            };
+        }
+    }, [gameWindow]);
+
     
     
     //Global context variables
     const context = { 
         gameWindow,
         openGameWindow,
-        gameWindowRoot
+        gameWindowRoot,
+        gameWindowDimensions
     }
 
     return (
@@ -93,15 +123,6 @@ export function GameWindowProvider({ children }) {
 export function GameDisplay({ children, forceOpem }) {
 
     const { gameWindow, gameWindowRoot, openGameWindow } = useGameWindow();
-
-    useEffect(() => {
-        if (!gameWindow) { //check first if there is a game window
-            console.log("No game window open!");
-        } else {
-            console.log("There is a game window open", gameWindow);  
-        }
-    }, [gameWindow, children])
-
 
     if (gameWindowRoot) {
         return ReactDOM.createPortal(children, gameWindowRoot); // remder portal
