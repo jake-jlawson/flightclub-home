@@ -10,6 +10,7 @@ import './ActionButton.css';
 import { TbTargetArrow } from "react-icons/tb";
 import { IoPlayCircleOutline } from "react-icons/io5";
 import { PiCameraFill } from "react-icons/pi";
+import { MdKeyboardDoubleArrowRight } from "react-icons/md";
 
 
 
@@ -20,7 +21,8 @@ export default function ActionButton({ text, icon, action, icon_size }) {
     const icons = {
         "target": <TbTargetArrow size={icon_size}/>,
         "play": <IoPlayCircleOutline size={icon_size}/>,
-        "camera": <PiCameraFill size={icon_size}/>
+        "camera": <PiCameraFill size={icon_size}/>,
+        "next": <MdKeyboardDoubleArrowRight size={icon_size}/>
     }
     
     return (

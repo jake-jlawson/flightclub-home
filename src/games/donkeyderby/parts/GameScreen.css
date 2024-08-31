@@ -13,16 +13,45 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+
+    padding-top: var(--GameScreenTop);
+    padding-bottom: var(--GameScreenBottom);
 }
 
 /*
     ROUND COUNTER
 */
 #ddRoundCounter {
+    --roundCounter-height: 20px;
+    
     width: 50%;
-    height: 50px;
+    height: var(--roundCounter-height);
 
-    margin-top: var(--GameScreenTop);
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 0.5%;
+
+    flex-shrink: 0;
+
+    padding-top: 10px;
+    padding-bottom: 30px;
+}
+
+.dd-round {
+    height: 100%;
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+
+    border: 2px solid white;
+
+    transition: background-color 0.3s;
+
+    box-sizing: border-box;
+}
+
+.dd-round-active {
+    background-color: white;
 }
 
 
@@ -30,7 +59,7 @@
     TEAM PLAYER ZONE
 */
 #teamPlayZone {
-    height: 70%;
+    height: 80%;
     
     width: 100%;
     padding-right: calc(var(--borderMargin) + var(--finishLineWidth));
@@ -39,7 +68,7 @@
 
     display: flex;
     flex-direction: column;
-    justify-content: baseline;
+    justify-content: space-evenly;
     align-items: center;
     gap: 10px;
 
@@ -55,9 +84,9 @@
 }
 
 .dd-team-icon {
-    height: 60%;
+    height: 70%;
     position: relative;
-    width: 25%;
+    width: 20%;
     /* background-color: green; */
 
     display: flex;
@@ -65,11 +94,13 @@
     justify-content: center;
 
     box-sizing: border-box;
+
+    padding-left: 80px;
 }
 
 .donkey-run {
     height: 100%;
-    width: 75%;
+    width: 80%;
     overflow-x: visible;
 }
 
@@ -78,8 +109,14 @@
     100% { x: 100%; }
 }
 
-.donkey-track image {
-    animation: moveX 3s linear infinite;
+.donkey-track g {
+    transition: transform 1s;
+}
+
+.donkey-track text {
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 2em;
+    fill: white;
 }
 
 

@@ -40,7 +40,7 @@ const player3 = new Player("Carolyn", jakepic, 1);
 const player4 = new Player("Josh", jakepic, 1);
 //create some test teams
 // const teams = [[player1], [player2], [player3, player4]];
-const teams = [[player1], [player2], [player3], [player3]];
+const teams = [[player1], [player2], [player3]];
 
 
 /** APP COMPONENT

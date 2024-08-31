@@ -18,15 +18,23 @@ export const DonkeyDerbyLogicProvider = ({ children, dd_teams }) => {
     
     /**CONFIG */
     const config = {
-        pointsToWin: 8
+        pointsToWin: 8,
+        maxRounds: 12
     }
     
     /**STATES
      * @var {Array[DonkeyDerbyTeam]} teams - teams that are playing the game
      * @var {DonkeyDerbyTeam} activeTeam - the team that is currently active
+     * @var {int} roundNumber - the current round number
      */
     const [teams, setTeams] = useState([]);
     const [activeTeam, setActiveTeam] = useState(null);
+    const [roundNumber, setRoundNumber] = useState(1);
+    const [currentGoScore, setCurrentGoScore] = useState({
+        1: [0, 1],
+        2: [0, 2],
+        3: [0, 3]
+    });
 
 
     /**EFFECTS
@@ -65,16 +73,48 @@ export const DonkeyDerbyLogicProvider = ({ children, dd_teams }) => {
     }
 
     const nextTeam = () => {
+        //Set current go score to team score
+        addPoints(activeTeam, currentGoScore[1] + currentGoScore[2] + currentGoScore[3]);
+        
+        
         //Find current team index
         let current_index = teams.findIndex((team) => team.id === activeTeam.id);
 
         //Find next team index
         let next_index = (current_index + 1) % teams.length;
 
+        //Check if next team is the first team
+        if (next_index === 0) {
+            nextRound();
+        }
+
         //Set next team as active
         setActiveTeam(teams[next_index]);
+        setCurrentGoScore({
+            1: 0,
+            2: 0,
+            3: 0
+        });
     }
-    
+
+    const nextRound = () => {
+        if (roundNumber >= config.maxRounds) {
+            console.error("You have reached the end of the game");
+            return;
+        }
+        
+        console.log("Moving to Round: ", roundNumber + 1);
+        setRoundNumber(roundNumber + 1);
+    }
+
+    const scoreUpdater = {
+        set1: (score) => setCurrentGoScore({...currentGoScore, 1: score}),
+        set2: (score) => setCurrentGoScore({...currentGoScore, 2: score}),
+        set3: (score) => setCurrentGoScore({...currentGoScore, 3: score}),
+        get1: () => currentGoScore[1],
+        get2: () => currentGoScore[2],
+        get3: () => currentGoScore[3]
+    }
 
 
 
@@ -89,7 +129,11 @@ export const DonkeyDerbyLogicProvider = ({ children, dd_teams }) => {
         activeTeam,
         config,
         addPoints,
-        nextTeam
+        nextTeam,
+        roundNumber,
+        nextRound,
+        currentGoScore,
+        scoreUpdater
     }
 
     return (

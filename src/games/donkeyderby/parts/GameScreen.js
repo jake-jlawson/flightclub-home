@@ -4,7 +4,7 @@
  * - Displays the game screen, darts feedback and scores feedback
 */
 /*IMPORTS*/
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import './GameScreen.css';
 
 //Context Imports
@@ -32,9 +32,9 @@ export default function GameScreen() {
             <div id="teamPlayZone">
                 {teams.map((team, index) => {
                     return <TeamPlayZone 
-                            team={team} 
-                            key={index}
-                            height={`${100 / (teams.length)}%`}
+                                team={team} 
+                                key={index}
+                                height={`${100 / 6}%`}
                             />
                 })}
             </div>
@@ -76,8 +76,9 @@ function TeamPlayZone({ team, height }) {
  * @description areas where players donkeys run
 */
 function DonkeyTrack({ team, currentScore }) {
-    const { config, activeTeam } = useDonkeyDerby();
+    const { config, activeTeam, teams, currentGoScore } = useDonkeyDerby();
     const [active, setActive] = useState(false);
+    const [position, setPosition] = useState(0);
 
     // Donkey Track Settings
     const trackSettings = {
@@ -85,7 +86,8 @@ function DonkeyTrack({ team, currentScore }) {
         stroke: 2,
         ticks: Array.from({ length: config.pointsToWin + 1 }, (_, i) => i),
         numberOfTicks: config.pointsToWin,
-        start: 6.75
+        start: 6.75,
+        donkeyWidth: 12
     }
 
     //Styles
@@ -110,19 +112,40 @@ function DonkeyTrack({ team, currentScore }) {
             setActive(false);
         }
     }, [team, activeTeam]);
-    
-    
+
+    useEffect(() => {
+        setPosition(getPosition(team.points + currentGoScore[0] + currentGoScore[1] + currentGoScore[2]));
+    }, [teams, currentGoScore])
+
+
+
+    // Calculate point widths
+    const svgRef = useRef(null);
+    const getPosition = (points) => {
+        
+        if (!svgRef.current) {
+            return 0;
+        }
+
+        const svg_dimensions = svgRef.current.getBBox();
+        const width = svg_dimensions.width;
+
+        return points * (width / config.pointsToWin);
+    }
+
+
     return (
         <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox={`0 0 100% 100%`}
-            style={{ width: '100%', height: '100%' }}
+            style={{ width: '100%', height: '100%'}}
             className='donkey-track'
+            ref={svgRef}
         >
 
             {/*Axis*/}
             <line 
-                x1={`${trackSettings.start}%`} y1="95%" x2="100%" y2="95%" 
+                x1={`${trackSettings.donkeyWidth / 2}%`} y1="95%" x2="100%" y2="95%"
                 style={getTrackStyle(active)}
             />
 
@@ -130,9 +153,9 @@ function DonkeyTrack({ team, currentScore }) {
             {trackSettings.ticks.map((tick, index) => {
                 return (
                     <line 
-                        x1={`${trackSettings.start + ((100-trackSettings.start) / (trackSettings.numberOfTicks)) * tick}%`} 
+                        x1={`${(trackSettings.donkeyWidth / 2) + ((100 - (trackSettings.donkeyWidth / 2)) / (trackSettings.numberOfTicks)) * tick}%`} 
                         y1="95%" 
-                        x2={`${trackSettings.start + ((100-trackSettings.start) / (trackSettings.numberOfTicks)) * tick}%`} 
+                        x2={`${(trackSettings.donkeyWidth / 2) + ((100 - (trackSettings.donkeyWidth / 2)) / (trackSettings.numberOfTicks)) * tick}%`} 
                         y2="100%" 
                         style={getTrackStyle(active)}
                         key={index}
@@ -142,23 +165,28 @@ function DonkeyTrack({ team, currentScore }) {
 
             {/*Render Donkey
                 (INSERT GROUP ELEMENT FOR DONKEY AND TEXT)*/}
-            <image 
-                href={team.donkey} 
-                x={`${team.points / config.pointsToWin * 100}%`} 
-                y="80%" 
-                height="80%" 
-                preserveAspectRatio="xMidYMid meet"
-                transform='translate(0, -102)'
-            />
-
-            <text
-                textAnchor="middle"
-                dominantBaseline="middle"
-                x={`${team.points / config.pointsToWin * 100}%`}
-                y="50%"
+            <g 
+                width={`${trackSettings.donkeyWidth}%`}
+                transform={`translate(${position}, 0)`}
             >
-                {team.board_number}
-            </text>
+                <image 
+                    href={team.donkey} 
+                    x="0"
+                    y="0" 
+                    width={`${trackSettings.donkeyWidth}%`}
+                    preserveAspectRatio="xMidYMid meet"
+                />
+
+                <text
+                    textAnchor="middle"
+                    dominantBaseline="middle"
+                    x="78"
+                    y="60"
+                >
+                    {team.board_number}
+                </text>
+            </g>
+            
         </svg>
     )
 }
@@ -168,7 +196,24 @@ function DonkeyTrack({ team, currentScore }) {
  * @description visualises the current round count
 */
 function RoundCounter() {
+    
+    const { roundNumber, config } = useDonkeyDerby();
+    
+    const renderRoundCounter = (round) => {
+        return (
+            <div 
+                className={roundNumber >= round ? 'dd-round dd-round-active' : 'dd-round'}
+                key={round}
+            ></div>
+        )
+    }
+    
     return (
-        <div id="ddRoundCounter"></div>
+        <div id="ddRoundCounter">
+            {Array.from({length: config.maxRounds}, (_, i) => i).map((_, index) => {
+                let round = index + 1;
+                return renderRoundCounter(round);
+            })}
+        </div>
     )
 }

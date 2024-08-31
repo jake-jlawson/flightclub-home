@@ -12,6 +12,8 @@ import './DonkeyDerby.css';
 import { GameDisplay } from '../../contexts/GameDisplay';
 import BorderDecoration from '../../components/BorderDecoration/BorderDecoration';
 import GamePlayerIcon from '../../components/GamePlayerIcon/GamePlayerIcon';
+import ScoreEntry from '../../components/ScoreEntry/ScoreEntry';
+import ActionButton from '../../components/ActionButton';
 
 import { useGameWindow } from '../../contexts/GameDisplay';
 import { useGame } from '../../contexts/GameContext';
@@ -50,18 +52,20 @@ export default function DonkeyDerby({ teams }) {
  * @component renders the control window for the donkey derby game*/
 function ControlWindow() {
     
-    const { activeTeam, addPoints, nextTeam } = useDonkeyDerby();
+    const { activeTeam, addPoints, nextTeam, scoreUpdater } = useDonkeyDerby();
 
     return (
         <div id="ddControlWindow" className='screen'>
-            <button onClick={() => {
-                addPoints(activeTeam, 1);
-            }}>
-                Add Point
-            </button>
-            <button onClick={nextTeam}>
-                Next Team
-            </button>
+            <div id="ddScoreEntry">
+                <ScoreEntry scoreHandler={scoreUpdater}/>
+                <ActionButton 
+                    text="Next"
+                    icon="next"
+                    action={nextTeam}
+                />
+            </div>
+            
+
         </div>
     );
 }
